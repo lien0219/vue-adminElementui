@@ -14,7 +14,7 @@ npm run dev
 
 ```
 
-接口地址++++++++++++
+接口地址http://39.98.123.211:8510/swagger-ui.html#/
 权限管理: http://39.98.123.211:8170/swagger-ui.html
 商品管理：http://39.98.123.211:8510/swagger-ui.html
 活动与优惠券管理：http://39.98.123.211:8200/swagger-ui.html
