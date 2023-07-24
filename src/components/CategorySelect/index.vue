@@ -6,6 +6,7 @@
           placeholder="请选择"
           v-model="cForm.category1Id"
           @change="handler1"
+          :disabled="show"
         >
           <el-option
             :label="c1.name"
@@ -21,6 +22,7 @@
           placeholder="请选择"
           v-model="cForm.category2Id"
           @change="handler2"
+          :disabled="show"
         >
           <el-option
             :label="c2.name"
@@ -35,6 +37,7 @@
           placeholder="请选择"
           v-model="cForm.category3Id"
           @change="handler3"
+          :disabled="show"
         >
           <el-option
             :label="c3.name"
@@ -51,7 +54,7 @@
 <script>
 export default {
   name: "CategorySelect",
-  props: [],
+  props: ["show"],
   data() {
     return {
       //一级分类的数据

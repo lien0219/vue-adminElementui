@@ -50,6 +50,7 @@
       :current-page="page"
       :total="total"
       :page-size="limit"
+      :pager-count="7"
       :page-sizes="[3, 5, 10]"
       @current-change="getPageList"
       @size-change="handleSizeChange"

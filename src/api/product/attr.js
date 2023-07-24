@@ -16,7 +16,6 @@ export const reqCategory3List = (category2Id) =>
   request({ url: `/admin/product/getCategory3/${category2Id}`, method: "get" });
 
 // 获取平台属性接口  /admin/product/attrInfoList/{category1Id}/{category2Id}/{category3Id}   get
-
 export const reqAttrList = (category1Id, category2Id, category3Id) =>
   request({
     url: `/admin/product/attrInfoList/${category1Id}/${category2Id}/${category3Id}`,
@@ -24,6 +23,5 @@ export const reqAttrList = (category1Id, category2Id, category3Id) =>
   });
 
 //  添加属性以及属性值接口  /admin/product/saveAttrInfo  post
-
-export const reqAddAttr = (data) =>
+export const reqAddOrUpdateAttr = (data) =>
   request({ url: "/admin/product/saveAttrInfo", method: "post", data });
