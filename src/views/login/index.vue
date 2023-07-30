@@ -1,5 +1,6 @@
 <template>
   <div class="login-container">
+    <!-- el-form组件：elementUI插件里面的一个组件，经常展示表单元素  model：用于收集表单数据  rules：表单验证规则-->
     <el-form
       ref="loginForm"
       :model="loginForm"
@@ -71,7 +72,8 @@ import { validUsername } from "@/utils/validate";
 export default {
   name: "Login",
   data() {
-    // 进行表单验证
+    //先不用在意：这里面在进行表单验证，验证用户名与密码操作
+    //回首在看这里
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
         callback(new Error("Please enter the correct user name"));
@@ -92,12 +94,8 @@ export default {
         password: "111111",
       },
       loginRules: {
-        username: [
-          { required: true, trigger: "blur", validator: validateUsername },
-        ],
-        password: [
-          { required: true, trigger: "blur", validator: validatePassword },
-        ],
+        // username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        // password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       loading: false,
       passwordType: "password",
@@ -123,15 +121,21 @@ export default {
         this.$refs.password.focus();
       });
     },
-    // 登录
+    //登录业务：发请求，带着用户名与密码给服务器（成功与失败）
     handleLogin() {
+      //这里是在验证表单元素（用户名与密码）的是否符合规则
       this.$refs.loginForm.validate((valid) => {
+        //如果符合验证规则
         if (valid) {
+          //按钮会有一个loading效果
           this.loading = true;
+          //派发一个action:user/login,带着用户名与密码的载荷
           this.$store
             .dispatch("user/login", this.loginForm)
             .then(() => {
+              //登录成功进行路由的跳转
               this.$router.push({ path: this.redirect || "/" });
+              //loading效果结束
               this.loading = false;
             })
             .catch(() => {
@@ -149,6 +153,7 @@ export default {
 
 <style lang="scss">
 /* 修复input 背景不协调 和光标变色 */
+/* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
 $bg: #283443;
 $light_gray: #fff;
@@ -202,7 +207,7 @@ $light_gray: #eee;
   min-height: 100%;
   width: 100%;
   overflow: hidden;
-  background: url(~@/assets/login.jpg);
+  background: url(~@/assets/1.png);
   background-size: 100% 100%;
 
   .login-form {
